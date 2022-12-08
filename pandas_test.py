@@ -32,7 +32,7 @@ gen_otp_data  = {'locale' : 'ko_KR',
 'url' : 'dbms/MDC/STAT/standard/MDCSTAT03901'}
 #otp 토큰 받아오기
 otp = requests.post(gen_otp_url, data=gen_otp_data)
-
+# print(otp.text)
 # 다운받을 링크
 csv_url = 'http://data.krx.co.kr/comm/fileDn/download_csv/download.cmd'
 # 코드에 토큰 넣기
@@ -40,6 +40,7 @@ gen_otp_data = { 'code' :  otp.content }
 csv = requests.post(csv_url, data=gen_otp_data)
 filename = get_filename_from_cd(csv.headers.get('content-disposition'))
 # open(filename, 'wb').write(csv.content)
+open('1.csv', 'wb').write(csv.content)
 # printvalue = (csv.content).decode('cp949')
 # print(printvalue)
 
